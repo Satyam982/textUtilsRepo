@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 export default function TextForm(props) {
   const [text, setText] = useState("Enter text here");
-
   //   text ="new text" --> wrong way to change the text
   //   setText('new text') --> correct way to change the text
 
@@ -12,12 +11,10 @@ export default function TextForm(props) {
     // console.log(event,"value");
     // setText("Oppssssss")
     props.showalert('success', 'Text is converted into upper case!!');
-
   };
 
   const handleOnChange = (event) => {
     setText(event.target.value);
-    console.log("On change");
   };
 
   const handleTitleCase = () => {
@@ -70,7 +67,7 @@ export default function TextForm(props) {
           value={text}
           id="myText"
           rows="8"
-          style={{color : props.mode === "light" ? "black" : 'white', background : props.mode === "light" ? "white" : 'grey' }}
+          style={{color : props.mode === 'light' ? 'dark' : 'white', background : props.mode === 'light' ? 'dark' : 'white' }}
         ></textarea>
         <div className="btn btn-primary mt-2 mx-2" onClick={handleUpperCase}>
           Convert To Uppercase
@@ -88,10 +85,10 @@ export default function TextForm(props) {
       <div className="container" style={{color : props.mode === "light" ? "black" : 'white'}}>
         <h1>Your text summary</h1>
         <p>
-          {text && text.length ? text.split(" ").length : 0} words and {text.length}{" "}
+          {text.split(/\s+/).filter((item) => item.length !== 0).length} words and {text.length}{" "}
           characters
         </p>
-        <p>{0.008 * text.split(" ").length} minutes to read</p>
+        <p>{0.008 * text.split(/\s+/).filter((item) => item.length !== 0).length} minutes to read</p>
       </div>
     </>
   );

@@ -2,18 +2,26 @@ import React, { useState } from "react";
 
 export default function About(props) {
 
-  const [myStyle, setStyle] = useState({ color: "black", backgroundColor: "white" });
-  const [text, setText] = useState('Enable Dark Mode');
+  // const [myStyle, setStyle] = useState({ color: "black", backgroundColor: "white" });
+  // const [myStyle, setStyle] = useState(null);
 
-  const enableDarkMode = () => {
-    if(myStyle.color === "white"){
-        setText("Enable dark mode");
-        setStyle({ color: "black", backgroundColor: "white" });
-    }else{
-        setText("Enable light mode");
-        setStyle({ color: "white", backgroundColor: "black" }); 
-    }
-  };
+  let myStyle = {
+    color : props.mode === 'light' ? 'black' : 'white',
+    backgroundColor : props.mode === 'light' ? 'white' : 'grey',
+  }
+  // props.mode === 'light' ? setStyle({backgroundColor : 'white', color : 'black'}) : setStyle({backgroundColor : 'grey', color : 'white'});
+
+  // If we use above syntex then will get below error.  
+  // Too many re-renders. React limits the number of renders to prevent an infinite loop.
+  // const [text, setText] = useState('Enable Dark Mode');
+
+  // const enableDarkMode = () => {
+  //   if(props.mode === "light"){
+  //       setStyle({ color: "black", backgroundColor: "white" });
+  //   }else{
+  //       setStyle({ color: "white", backgroundColor: "black" }); 
+  //   }
+  // };
 
   return (
     <>
@@ -120,7 +128,7 @@ export default function About(props) {
           </div>
         </div>
       </div>
-      <div className="container my-3">
+      {/* <div className="container my-3">
         <button
           className="btn btn-primary"
           onClick={enableDarkMode}
@@ -128,7 +136,7 @@ export default function About(props) {
         >
           {text}
         </button>
-      </div>
+      </div> */}
     </>
   );
 }
